@@ -1,0 +1,55 @@
+{
+  "name": "n8n-nodes-octabiz",
+  "version": "1.0.1",
+  "description": "n8n community node for Octabiz — read and create records over the Octabiz Connect API.",
+  "license": "MIT",
+  "author": {
+    "name": "Octabiz",
+    "email": "support@octabiz.ai",
+    "url": "https://octabiz.ai"
+  },
+  "homepage": "https://octabiz.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Octabiz/n8n-nodes-octabiz.git"
+  },
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "octabiz",
+    "erp",
+    "crm",
+    "invoicing"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=18.10"
+  },
+  "scripts": {
+    "build": "tsc && mkdir -p dist/nodes/Octabiz && cp nodes/Octabiz/*.svg dist/nodes/Octabiz/",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/OctabizApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Octabiz/Octabiz.node.js"
+    ]
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "devDependencies": {
+    "n8n-workflow": "*",
+    "typescript": "^5.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Octabiz/n8n-nodes-octabiz/issues"
+  }
+}

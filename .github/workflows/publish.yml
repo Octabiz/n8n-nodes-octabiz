@@ -1,0 +1,34 @@
+# Publishes n8n-nodes-octabiz to npm WITH provenance via npm Trusted Publishing
+# (OIDC) — no NPM_TOKEN secret required. This public repo runs on GitHub's free
+# Actions minutes, so it is not blocked by private-repo Actions billing.
+#
+# One-time setup on npmjs.com (owner):
+#   Package n8n-nodes-octabiz > Settings > Trusted Publisher > GitHub Actions
+#     Organization or user: Octabiz
+#     Repository:           n8n-nodes-octabiz
+#     Workflow filename:    publish.yml
+#   (leave Environment blank)
+# Then run this workflow from the Actions tab, or push a v* tag.
+name: Publish
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required for npm provenance + trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - run: npm install -g npm@latest # OIDC trusted publishing needs npm >= 11.5.1
+      - run: npm install
+      - run: npm run build
+      - run: npm publish --provenance --access public
