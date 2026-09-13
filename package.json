@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-octabiz",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "n8n community node for Octabiz — read and create records over the Octabiz Connect API.",
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
     "node": ">=18.10"
   },
   "scripts": {
-    "build": "tsc && mkdir -p dist/nodes/Octabiz && cp nodes/Octabiz/*.svg dist/nodes/Octabiz/",
+    "build": "tsc && mkdir -p dist/nodes/Octabiz && cp nodes/Octabiz/*.svg dist/nodes/Octabiz/ && cp credentials/*.svg dist/credentials/",
     "prepublishOnly": "npm run build"
   },
   "files": [

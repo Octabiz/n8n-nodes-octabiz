@@ -2,6 +2,7 @@
 // ABOUTME: (/v1/<resource>); Create posts a body, Get Many reads the list. Auth is
 // ABOUTME: the Octabiz API credential. No runtime code — n8n drives the routing.
 
+import { NodeConnectionTypes } from 'n8n-workflow';
 import type { INodeProperties, INodeType, INodeTypeDescription } from 'n8n-workflow';
 
 // A create field that routes its value into the request body.
@@ -51,8 +52,9 @@ export class Octabiz implements INodeType {
     subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
     description: 'Read and create records in Octabiz',
     defaults: { name: 'Octabiz' },
-    inputs: ['main'],
-    outputs: ['main'],
+    usableAsTool: true,
+    inputs: [NodeConnectionTypes.Main],
+    outputs: [NodeConnectionTypes.Main],
     credentials: [{ name: 'octabizApi', required: true }],
     requestDefaults: {
       baseURL: '={{$credentials.baseUrl}}',
@@ -68,8 +70,8 @@ export class Octabiz implements INodeType {
         options: [
           { name: 'Customer', value: 'customers' },
           { name: 'Invoice', value: 'invoices' },
-          { name: 'Product', value: 'products' },
           { name: 'Lead or Deal', value: 'crm-deals' },
+          { name: 'Product', value: 'products' },
           { name: 'Sales Order', value: 'orders' },
         ],
       },
@@ -105,6 +107,7 @@ export class Octabiz implements INodeType {
         name: 'limit',
         type: 'number',
         default: 50,
+        description: 'Max number of results to return',
         typeOptions: { minValue: 1 },
         displayOptions: { show: { operation: ['getMany'] } },
         routing: { request: { qs: { limit: '={{$value}}' } } },

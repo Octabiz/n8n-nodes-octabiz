@@ -3,6 +3,7 @@
 
 import type {
   IAuthenticateGeneric,
+  Icon,
   ICredentialTestRequest,
   ICredentialType,
   INodeProperties,
@@ -12,6 +13,8 @@ export class OctabizApi implements ICredentialType {
   name = 'octabizApi';
 
   displayName = 'Octabiz API';
+
+  icon: Icon = 'file:octabiz.svg';
 
   documentationUrl = 'https://api.octabiz.ai/functions/v1/connect-api/v1/openapi.json';
 
