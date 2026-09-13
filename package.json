@@ -1,11 +1,11 @@
 {
   "name": "n8n-nodes-octabiz",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "n8n community node for Octabiz — read and create records over the Octabiz Connect API.",
   "license": "MIT",
   "author": {
     "name": "Octabiz",
-    "email": "support@octabiz.ai",
+    "email": "matthew@octabiz.ai",
     "url": "https://octabiz.ai"
   },
   "homepage": "https://octabiz.ai",
